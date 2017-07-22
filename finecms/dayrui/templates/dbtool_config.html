@@ -1,0 +1,93 @@
+{template nheader.html}
+
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+	<div class="page-bar">
+		<ul class="page-breadcrumb mylink">
+			{$menu.link}
+		</ul>
+		<ul class="page-breadcrumb myname">
+			{$menu.name}
+		</ul>
+		<div class="page-toolbar">
+			<div class="btn-group pull-right">
+				<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+					<i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					{loop $menu.quick $t}
+					<li>
+						<a href="{$t.url}">{$t.icon} {$t.name}</a>
+					</li>
+					{/loop}
+					<li class="divider"> </li>
+					<li>
+						<a href="javascript:window.location.reload();">
+							<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h3 class="page-title">
+		<small></small>
+	</h3>
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<span class="caption-subject font-green sbold ">{fc_lang('权限设置')}</span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="form-body">
+
+
+				<div class="form-group">
+					<label class="control-label col-md-2">目录权限：</label>
+					<div class="col-md-9">
+						<label><input class="form-control" type="text" name="data[path]" value="{$data.path}"></label>
+						<span class="help-block">此地址必须相对于网站根目录，为了安全期间，你可以重命名任意目录</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">授权有效期限：</label>
+					<div class="col-md-9">
+						<label><input class="form-control" type="text" name="data[time]" value="{$data.time}"></label>
+						<span class="help-block">单位秒，过期后需要重新授权登录管理平台</span>
+					</div>
+				</div>
+
+				{if $is_error}
+				<div class="form-group">
+					<label class="control-label col-md-2"> </label>
+					<div class="col-md-8">
+						<div class="alert alert-danger">
+						<strong>请将todo目录重命名为当前设置的目录名称。</strong></div>
+					</div>
+				</div>
+				{/if}
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="myfooter">
+		<div class="row">
+			<div class="portlet-body form">
+				<div class="form-body">
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+{template nfooter.html}

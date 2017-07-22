@@ -1,0 +1,217 @@
+{template "header.html", "/"}
+<div class="user_pic" style="margin: 10px;">
+	<img src=""/>
+</div>
+
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+	<div class="ch-img-modal">
+		<div class="modal-content">
+			<form class="avatar-form">
+				<div class="ch-img-modal-header">
+					<button class="close" data-dismiss="modal" type="button">&times;</button>
+					<p class="ch-img-title" id="avatar-modal-label">修改头像</p>
+				</div>
+				<div class="modal-body">
+					<div class="avatar-body">
+						<div class="avatar-upload">
+							<!--<input class="avatar-src" name="avatar_src" type="hidden">-->
+							<!--<input class="avatar-data" name="avatar_data" type="hidden">-->
+							<label for="avatarInput" style="line-height: 35px;">图片上传</label>
+							<button class="btn"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+							<!--<span id="avatar-name"></span>-->
+							<input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file">
+						</div>
+						<div class="avatar-wrapper"></div>
+						<div class="avatar-preview preview-md"></div>
+						<div class="hr"></div>
+						<div class="avatar-btns">
+							<button class="btn avatar-save fa fa-save" type="button" data-dismiss="modal" onclick="dr_save()"> 保存修改</button>
+							<button type="button" class="btn fa fa-refresh" data-method="reset">
+								重置图片<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    function dr_save() {
+        dr_tips('正在上传...', 3, 2);
+        var tx = $('#mytx img').attr('src');
+        $.post("{dr_member_url('account/upload', array('iajax' => 1))}", {tx: tx}, function(data) {
+            if(data == 1) {
+                dr_tips('上传成功', 3, 1);
+                window.location.reload();
+            } else {
+                dr_tips('上传失败：'+data.code);
+            }
+        }, 'json');
+    }
+</script>
+<script src="{THEME_PATH}liuwei/js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!--内容开始-->
+<div class="content">
+	<section class="banner-image">
+		<div class="banner-image">
+			<img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+		</div>
+		<div class="banner-mask">
+			<p>个人中心</p>
+			<p>Personal Center</p>
+		</div>
+	</section>
+	<section class="subhead">
+		<span>个人信息</span>
+	</section>
+
+	<article class="per-info">
+		<section class="info-name">
+			<div class="info-img">
+				<img class="img-circle" data-toggle="modal" data-target="#avatar-modal" src="{$member.avatar_url}" alt="">
+			</div>
+			<p>{$member.username}</p>
+		</section>
+
+		<section class="info-det">
+			<div class="modal fade ch-na"tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="ch-na-modal">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<p>修改用户名</p>
+					<form action="" class="ch-na-form form-group">
+						<label for="pre-ch-na">请输入新用户名:</label>
+						<input type="text" id="pre-ch-na" class="form-control" placeholder="六为防水">
+						<button class="btn btn-block">确认修改</button>
+					</form>
+				</div>
+			</div>
+			<div class="info-det-bl">
+				<div class="det-title">
+					<p>用户名</p>
+				</div>
+				<div class="det-body">
+					<p>{$member.username}</p>
+				</div>
+				<div class="det-btn pull-right">
+					<button class="btn" data-toggle="modal" data-target=".ch-na">修改</button>
+				</div>
+			</div>
+			<div class="info-det-bl">
+				<div class="det-title">
+					<p>邮箱</p>
+				</div>
+				<div class="det-body">
+					<p>{$member.email}</p>
+				</div>
+				<div class="det-btn">
+
+				</div>
+			</div>
+			<div class="modal fade ch-pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="ch-pd-modal">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<p>修改密码</p>
+					<form action="" class="ch-na-form form-group" method="post">
+						<label><span>旧密码: </span>（请先验证旧密码）</label>
+						<input type="password" class="form-control"  name="password" id="oldPwd">
+						<label><span>新密码: </span>（最小长度为6个字符）</label>
+						<input type="password" class="form-control" name="password1" id="newPwd">
+						<label><span>确认密码: </span>（最小长度为6个字符）</label>
+						<input type="password" class="form-control" name="password2" id="checkPwd">
+						<button class="btn btn-block" type="button" onclick="validOldPwd()">确认修改</button>
+					</form>
+				</div>
+			</div>
+			<div class="info-det-bl">
+				<div class="det-title">
+					<p>登录密码</p>
+				</div>
+				<div class="det-body">
+					<p>密码长度要求至少6位，建议您经常修改密码，以保证帐号更加安全。</p>
+				</div>
+				<div class="det-btn pull-right">
+					<button class="btn" data-toggle="modal" data-target=".ch-pd">修改</button>
+				</div>
+			</div>
+		</section>
+	</article>
+</div>
+<!--内容结束-->
+
+<script type="text/javascript">
+    function validOldPwd() {
+        $.post("{dr_member_url('account/cpassword')}",{password: $("#oldPwd").val()},function(data){
+            console.log(data)
+			if (data == '旧密码不正确') {
+                $("#err_oldPwd").html(data);
+                $("#err_oldPwd_group").addClass('has-error');
+			} else {
+                $("#err_oldPwd").html('');
+                $("#err_oldPwd_group").addClass('has-error');
+			}
+//            if (data) {
+
+//            } else {
+//                $("#err_oldPwd").html('');
+//                $("#err_oldPwd_group").removeClass('has-error');
+//            }
+        });
+        $.post("{dr_member_url('account/password')}",{password: $("#oldPwd").val(),password1: $("#newPwd").val(),password2: $("#checkPwd").val()},function(data){
+            if (data) {
+                $("#err_oldPwd").html(data);
+                $("#err_oldPwd_group").addClass('has-error');
+            } else {
+                $("#err_oldPwd").html('');
+                $("#err_oldPwd_group").removeClass('has-error');
+            }
+        });
+
+    }
+</script>
+
+{template "footer.html", "/"}
+
+
+
+<!--<script type="text/javascript">-->
+    <!--$(function(){-->
+        <!--{if $result_error}-->
+        <!--dr_tips('{$result_error.msg}', 3);-->
+        <!--{/if}-->
+    <!--});-->
+<!--</script>-->
+
+<!--<div class="blog-module shadow">-->
+	<!--<div class="blog-module-title">修改资料</div>-->
+
+	<!--<div class="member-form">-->
+
+		<!--<form action="" method="post" class="form-horizontal" novalidate="novalidate">-->
+			<!--<input type="hidden" name="data[uid]" value="{$member.uid}">-->
+			<!--<div class="form-body">-->
+				<!--<div class="form-group">-->
+					<!--<label class="col-md-2 control-label">邮箱：</label>-->
+					<!--<div class="col-md-10" style="padding-top: 10px;">-->
+						<!--{$member.email}-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--{$myfield}-->
+			<!--</div>-->
+
+			<!--<div class="form-actions">-->
+				<!--<div class="row">-->
+					<!--<div class="col-md-offset-2 col-md-3">-->
+						<!--<button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+
+		<!--</form>-->
+
+	<!--</div>-->
+<!--</div>-->
+
+
+

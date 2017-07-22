@@ -1,0 +1,60 @@
+{template "header.html"}
+<!--内容开始-->
+
+<div class="content">
+    <section>
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/banner-1.png" alt="">
+        </div>
+    </section>
+
+    <section class="page-position">
+        <div class="pull-left page-position">
+            <ul>
+
+                <li><a href="index.html">首页</a></li>
+                {dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}
+
+            </ul>
+        </div>
+    </section>
+
+    <section class="development-text">
+        {list action=category pid=$catid }
+        <h3>{$top.name}</h3>
+        {/list}
+        <div class="articleContent">
+
+            <!--<p>-->
+                <!--广州市六为防水工程有限公司是一家实施一体化及相关产业多元化战略，-->
+                <!--围绕建筑产业链，整合建材产业资源，集研发、生产、销售、施 工于一体的大型专业防水公司。-->
+                <!--公司现拥有现代化的生产基地、先进的生产设备和尖端的高新产品,-->
+                <!--可承接防水、堵漏、防腐保温、除霉、结构 防渗补强、装饰装修等大型工程设计及施工。-->
+            <!--</p>-->
+            <!--<div class="txtImage">-->
+                <!--<img class="img-responsive" src="images/banner-2.png" alt='' />-->
+            <!--</div>-->
+            <!--<p>-->
+                <!--1.建筑防水工程类：地下室防水；屋面防水；卫生间防水；隧道；涵洞；堤坝；桥梁；海岸结构；-->
+                <!--水塔和蓄水池；电梯井；混凝土墙体及地坪； 科学实验室；混凝土预制品等。<br>-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--2.各类建筑物的防水堵漏、抗渗防潮、防腐保温施工的承接，如：地下室人防、-->
+                <!--新老屋面、卫生间浴室厨房、内外墙面、游泳池水池、电缆沟矿 井、设备房、水下循环水道，饮水工程环保防水等。<br>-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--3.各种建筑渗漏的修缮处理：地下室、屋面（彩钢瓦屋面）、电梯井、基坑、卫生间、-->
+                <!--墙面、水箱、水塔、浴池等。<br>-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--4.各类建筑物裂缝处理：施工缝、连接缝、楼面裂缝、止水带、沉降缝等技术服务。<br>-->
+            <!--</p>-->
+            <!--<p>-->
+                <!--5.国家粮库、军用坑道、污水处理、大坝维修、城市水管抢修等。<br>-->
+            <!--</p>-->
+        </div>
+    </section>
+</div>
+<!--内容结束-->
+
+{template "footer.html"}

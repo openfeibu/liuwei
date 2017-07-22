@@ -1,0 +1,86 @@
+{template "header.html"}
+<!--内容开始-->
+
+<div class="content">
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>{dr_cat_value(4, 'name')}</p>
+            <p>NEWS CENTER</p>
+        </div>
+    </section>
+    <!--<section class="page-position">-->
+    <!--<div class="pull-left page-position">-->
+    <!--<ul>-->
+    <!--<li><a href="index.html">首页</a></li>-->
+    <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</section>-->
+    <section class="subhead">
+        <span>{dr_cat_value(4, 'name')}</span>
+        <ul class="pull-right">
+            <li>
+                <form action="/index.php" class="search pull-right">
+                    <input type="hidden" name="c" value="search">
+                    <input type="hidden" name="mid" value="news">
+                    <input type="hidden" name="m" value="news_search">
+                    <button type="submit"><img src="{THEME_PATH}liuwei/images/ic_search.png" alt=""></button>
+                    <input type="text" name="keyword" placeholder="请输入您要查找的新闻">
+                </form>
+            </li>
+            <li class="active"><a href="{$top.url}">全部</a></li>
+            {list action=category pid=4 }
+            {if t.child}
+            {list action=category pid=$t.id return=t2}
+            <li><a href="{$t2.url}">{$t2.name}</a></li>
+            {/list}
+            {/if}
+            {/list}
+        </ul>
+    </section>
+
+    <section class="media-center">
+        <div class="news-list-group">
+            {list action=sql module=$mid sql='$search_sql' page=1 pagesize=4 urlrule=$urlrule}
+            <div class="news-list">
+                <div class="news-list-img pull-left ">
+                    <a href="com_news.html"><img src="{dr_get_file($t.thumb)}" alt=""></a>
+                </div>
+                <div class="news-list-body">
+                    <a href="{$t.url}"><p>{$t.title}</p></a>
+                    <p>{$t.content}</p>
+                    <p>{$t.updatetime}</p>
+                </div>
+            </div>
+            {/list}
+        </div>
+
+        {php $pagenew=$pages}
+        <div class="news-group pull-right">
+            <h4>热门文章</h4>
+            <ul>
+                {list action=module catid=4 order=hits num=5}
+                <li>
+                    <a href="{$t.url}">{dr_strcut($t.title, 80)}</a>
+                </li>
+                {/list}
+            </ul>
+        </div>
+    </section>
+    <ul class="media-page">
+        {$pagenew}
+        <!--<li><a href="">上一页</a></li>-->
+        <!--<li class="page   -active"><a href="">1</a></li>-->
+        <!--<li><a href="">2</a></li>-->
+        <!--<li><a href="">3</a></li>-->
+        <!--<li><a href="">下一页</a></li>-->
+    </ul>
+
+</div>
+
+<!--内容结束-->
+
+{template "footer.html"}

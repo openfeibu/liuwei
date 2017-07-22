@@ -1,0 +1,187 @@
+{template "header.html", "/"}
+
+
+<div class="user_pic" style="margin: 10px;">
+    <img src=""/>
+</div>
+
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="ch-img-modal">
+        <div class="modal-content">
+            <form class="avatar-form">
+                <div class="ch-img-modal-header">
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                    <p class="ch-img-title" id="avatar-modal-label">修改头像</p>
+                </div>
+                <div class="modal-body">
+                    <div class="avatar-body">
+                        <div class="avatar-upload">
+                            <!--<input class="avatar-src" name="avatar_src" type="hidden">-->
+                            <!--<input class="avatar-data" name="avatar_data" type="hidden">-->
+                            <label for="avatarInput" style="line-height: 35px;">图片上传</label>
+                            <button class="btn"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+                            <!--<span id="avatar-name"></span>-->
+                            <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file">
+                        </div>
+                        <div class="avatar-wrapper"></div>
+                        <div class="avatar-preview preview-md"></div>
+                        <div class="hr"></div>
+                        <div class="avatar-btns">
+                            <button class="btn avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
+                            <button type="button" class="btn fa fa-refresh" data-method="reset">
+                                重置图片<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+<!--登录框-->
+<div class="modal fade login" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="login-modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p>会员登陆</p>
+        <div class="hr"></div>
+        <form action="" class="login-form">
+            <input type="text" class="form-control" minlength="11" maxlength="11"  placeholder="手机号码">
+            <input type="password" class="form-control" minlength="6" maxlength="16"  placeholder="密码">
+            <a class="forget-pd" href="#">忘记密码？</a>
+            <button type="submit" class="btn btn-block" disabled>登录</button>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="autologin" value="true">下次自动登录
+            </label>
+            <a class="registered" href="#">新用户注册</a>
+        </form>
+    </div>
+</div>
+<!--登录框-->
+<!--页头开始-->
+
+<header>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <img class="img-responsive" src="images/logo-green.png" alt="">
+            </div>
+            <ul>
+                <li><a class="active" href="index.html">首页</a></li>
+                <li>
+                    <a href="pro_del.html">走进六为 <span class="caret"></span></a>
+                    <ul class="del-down">
+                        <li><a href="pro_del.html">产品研发</a></li>
+                        <li><a href="">应用技术</a></li>
+                        <li><a href="">服务网络</a></li>
+                        <li><a href="">人才招聘</a></li>
+                    </ul>
+                </li>
+                <li><a href="building%20waterproof.html">建造防水</a></li>
+                <li><a href="case_show.html">案例展示</a></li>
+                <li><a href="media_center.html">媒体中心</a></li>
+                <li><a href="partners.html">合作伙伴</a></li>
+                <li><a href="">关于六为</a></li>
+                <li class="per-info-nav">
+                    <a href="#"><img src="images/case5.png" class="img-circle" alt=""></a>
+                    <ul class="per-down">
+                        <li><a href="#">个人信息</a></li>
+                        <li><a href="index.html">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--页头结束-->
+
+<!--内容开始-->
+<div class="content">
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>个人中心</p>
+            <p>Personal Center</p>
+        </div>
+    </section>
+    <section class="subhead">
+        <span>个人信息</span>
+    </section>
+
+    <article class="per-info">
+        <section class="info-name">
+            <div class="info-img">
+                <img class="img-circle" data-toggle="modal" data-target="#avatar-modal" src="images/case5.png" alt="">
+            </div>
+            <p>广州六为防水工程有限公司</p>
+        </section>
+
+        <section class="info-det">
+            <div class="modal fade ch-na"tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="ch-na-modal">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p>修改用户名</p>
+                    <form action="" class="ch-na-form form-group">
+                        <label for="pre-ch-na">请输入新用户名:</label>
+                        <input type="text" id="pre-ch-na" class="form-control" placeholder="六为防水">
+                        <button class="btn btn-block">确认修改</button>
+                    </form>
+                </div>
+            </div>
+            <div class="info-det-bl">
+                <div class="det-title">
+                    <p>用户名</p>
+                </div>
+                <div class="det-body">
+                    <p>广州六为防水工程有限公司</p>
+                </div>
+                <div class="det-btn pull-right">
+                    <button class="btn" data-toggle="modal" data-target=".ch-na">修改</button>
+                </div>
+            </div>
+            <div class="info-det-bl">
+                <div class="det-title">
+                    <p>手机号码</p>
+                </div>
+                <div class="det-body">
+                    <p>13640250123</p>
+                </div>
+                <div class="det-btn">
+
+                </div>
+            </div>
+            <div class="modal fade ch-pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="ch-pd-modal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>修改用户名</p>
+                <form action="" class="ch-na-form form-group">
+                    <label for="pre-pd-old"><span>旧密码: </span>（请先验证旧密码）</label>
+                    <input type="text" id="pre-pd-old" class="form-control">
+                    <label for="pre-pd-new"><span>新密码: </span>（最小长度为6个字符）</label>
+                    <input type="text" id="pre-pd-new" class="form-control">
+                    <label for="pre-ch-pd"><span>确认密码: </span>（最小长度为6个字符）</label>
+                    <input type="text" id="pre-ch-pd" class="form-control">
+                    <button class="btn btn-block">确认修改</button>
+                </form>
+            </div>
+</div>
+            <div class="info-det-bl">
+                <div class="det-title">
+                    <p>登录密码</p>
+                </div>
+                <div class="det-body">
+                    <p>密码长度要求至少6位，建议您经常修改密码，以保证帐号更加安全。</p>
+                </div>
+                <div class="det-btn pull-right">
+                    <button class="btn" data-toggle="modal" data-target=".ch-pd">修改</button>
+                </div>
+            </div>
+        </section>
+    </article>
+</div>
+<!--内容结束-->
+
+{template "footer.html", "/"}

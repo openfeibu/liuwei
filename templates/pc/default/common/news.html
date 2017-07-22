@@ -1,0 +1,38 @@
+{template "header.html"}
+
+<!--内容开始-->
+
+<div class="content">
+
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>媒体中心</p>
+            <p>NEWS CENTER</p>
+        </div>
+    </section>
+    <!--<section class="page-position">-->
+        <!--<div class="pull-left page-position">-->
+            <!--<ul>-->
+                <!--<li><a href="index.html">首页</a></li>-->
+                <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</section>-->
+
+    <section class="development-text">
+        <div class="articleContent">
+            <div class="news-heading">
+                <h3>{$title}</h3>
+                <span>{$inputtime}</span>
+                <span>浏览量：{dr_show_hits($id)}</span>
+            </div>
+            <p>{$content}</p>
+        </div>
+    </section>
+</div>
+<!--内容结束-->
+
+{template "footer.html"}

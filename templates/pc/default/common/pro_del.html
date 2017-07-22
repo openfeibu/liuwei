@@ -1,0 +1,30 @@
+{template "header.html"}
+
+<!--内容开始-->
+<div class="content">
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>{$top.name}</p>
+            <p>APPROACH LIUWEI</p>
+        </div>
+    </section>
+    <section class="subhead">
+        {list action=category pid=1 num=1}
+        <span>{$t.name}</span>
+        {/list}
+    </section>
+
+    <section class="development-text">
+        <div class="articleContent">
+            {list action=category pid=1 num=1}
+            <p>{$t.content}</p>
+            {/list}
+        </div>
+    </section>
+</div>
+<!--内容结束-->
+
+{template "footer.html"}

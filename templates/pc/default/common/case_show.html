@@ -1,0 +1,60 @@
+{template "header.html"}
+
+
+    <!--内容开始-->
+
+    <div class="content">
+        <section class="banner-image">
+            <div class="banner-image">
+                <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+            </div>
+            <div class="banner-mask">
+                <p>{$top.name}</p>
+                <p>CUSTOMER CASE</p>
+            </div>
+        </section>
+        <!--<section class="page-position">-->
+            <!--<div class="pull-left page-position">-->
+                <!--<ul>-->
+                    <!--<li>首页</li>-->
+                    <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</section>-->
+        <section class="subhead">
+            <span>{dr_cat_value(27, 'name')}</span>
+            <ul class="pull-right">
+                <li class="active"><a href="{$top.url}">全部</a></li>
+                {list action=category pid=3 }
+                {if t.child}
+                {list action=category pid=$t.id return=t2}
+                <li><a href="{$t2.url}">{$t2.name}</a></li>
+                {/list}
+                {/if}
+                {/list}
+            </ul>
+        </section>
+
+        <section id="customer-case">
+            {list action=module module=news catid=$catid page=1 pagesize=9 urlrule=index.php?page=[page] order=displayorder,updatetime}
+            <div class="case-group">
+                <div class="case-image">
+                    <img class="img-responsive" src="{dr_get_file($t.thumb)}" alt="">
+                    <div class="case-text">
+                        <a href="{$t.url}"><p>{$t.title}</p></a>
+                    </div>
+                    <div class="case-text-hover">
+                        <a href="{$t.url}"><p>{$t.title}</p></a>
+                        <p>{$t.description}</p>
+                    </div>
+                </div>
+            </div>
+            {/list}
+        </section>
+        <ul class="media-page">
+            {$pages}
+        </ul>
+    </div>
+
+    <!--内容结束-->
+{template "footer.html"}

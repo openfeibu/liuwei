@@ -1,0 +1,68 @@
+{template "header.html"}
+
+<!--内容开始-->
+<div class="content">
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>{$top.name}</p>
+            <p>WATERPROOF CONSTRUCTION</p>
+        </div>
+    </section>
+
+    <section class="subhead">
+        <span>{dr_cat_value(26, 'name')}</span>
+        <ul class="pull-right">
+            <li>
+                <form action="/index.php" class="search pull-right" method="get" role="form">
+                    <input type="hidden" name="c" value="search">
+                    <input type="hidden" name="mid" value="produce">
+                    <button type="submit"><img src="{THEME_PATH}liuwei/images/ic_search.png" alt=""></button>
+                    <input type="text" name="keyword" placeholder="请输入您要查找的产品">
+                </form>
+            </li>
+
+            <!--<li class="active"><a href="{$top.url}">全部</a></li>-->
+            <!--<li><a href="{dr_cat_value(28, 'url')}">{dr_cat_value(28, 'name')}</a></li>-->
+            <!--<li><a href="{dr_cat_value(29, 'url')}">{dr_cat_value(29, 'name')}</a></li>-->
+            <!--<li><a href="{dr_cat_value(30, 'url')}">{dr_cat_value(30, 'name')}</a></li>-->
+
+            <li class="active"><a href="{$top.url}">全部</a></li>
+            {list action=category pid=2 }
+            {if t.child}
+            {list action=category pid=$t.id return=t2}
+            <li><a href="{$t2.url}">{$t2.name}</a></li>
+            {/list}
+            {/if}
+            {/list}
+        </ul>
+    </section>
+
+    <section class="pro-group">
+        {list action=module module=produce catid=$catid page=1 pagesize=12 urlrule=index.php?page=[page] order=displayorder,updatetime}
+        <div class="pro-list">
+            <div class="pro-image">
+                <a href="{$t.url}"><img class="img-responsive" src="{dr_get_file($t.thumb)}" alt=""></a>
+            </div>
+            <div class="pro-text">
+                <a href="{$t.url}"><p>{$t.title}</p></a>
+                <p>{$t.description}</p>
+            </div>
+        </div>
+        {/list}
+    </section>
+    <ul class="media-page">
+        {$pages}
+    </ul>
+
+    <!--<div class="search-pagination">-->
+        <!--<ul class="pagination">-->
+            <!--{$pages}-->
+        <!--</ul>-->
+    <!--</div>-->
+</div>
+<!--内容结束-->
+
+{template "footer.html"}

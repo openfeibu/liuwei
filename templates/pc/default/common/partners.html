@@ -1,0 +1,37 @@
+{template "header.html"}
+<!--内容开始-->
+<div class="content">
+    <section class="banner-image">
+        <div class="banner-image">
+            <img class="img-responsive" src="{THEME_PATH}liuwei/images/partner.png" alt="">
+        </div>
+        <div class="banner-mask">
+            <p>{$top.name}</p>
+            <p>COOPERATIVE PARTNER</p>
+        </div>
+    </section>
+    <section class="subhead">
+        <span>{$top.name}</span>
+    </section>
+    <section class="partner-profile">
+        {list action=module module=partners catid=$catid page=1 pagesize=9 urlrule=index.php?page=[page] order=displayorder,updatetime}
+        <div class="par-group">
+            <div class="par-header">
+                <p>{$t.title}</p>
+            </div>
+            <div class="par-body">
+                <a href="{$t.keywords}"><img src="{dr_get_file($t.thumb)}" alt="">
+            </div>
+            <div class="par-footer">
+                <p>{$t.description}</p>
+            </div>
+        </div>
+        {/list}
+    </section>
+    <ul class="media-page">
+        {$pages}
+    </ul>
+</div>
+<!--内容结束-->
+
+{template "footer.html"}

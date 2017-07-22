@@ -1,0 +1,87 @@
+{template "header.html"}
+<!--内容开始-->
+
+<!--轮播图开始-->
+<div class="content">
+	<section class="index-carousel">
+		<!-- Swiper -->
+		<div class="swiper-container gallery-top">
+			<div class="swiper-wrapper">
+				{php $block=dr_block(4);}
+				<div class="swiper-slide">
+					<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">
+				</div>
+				<div class="swiper-slide">
+					<img class="img-responsive" src="{dr_get_file($block.file.1)}" alt="">
+				</div>
+				<div class="swiper-slide">
+					<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">
+				</div>
+			</div>
+			<!-- Add Arrows -->
+		</div>
+		<div class="swiper-pagination"></div>
+		<!--<div class="swiper-container gallery-thumbs">-->
+			<!--<div class="swiper-wrapper">-->
+				<!--<div class="swiper-slide">-->
+					<!--<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">-->
+				<!--</div>-->
+				<!--<div class="swiper-slide">-->
+					<!--<img class="img-responsive" src="{dr_get_file($block.file.1)}" alt="">-->
+				<!--</div>-->
+				<!--<div class="swiper-slide">-->
+					<!--<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">-->
+				<!--</div>-->
+			<!--</div>-->
+			<!-- Add Arrows -->
+		<!--</div>-->
+		<div class="swiper-button-next swiper-button-white"></div>
+		<div class="swiper-button-prev swiper-button-white"></div>
+	</section>
+	<!--轮播图结束-->
+
+	<section id="index-dynamic">
+		<div class="index-about">
+			<div class="intro_up"><img class="img-responsive" src="{THEME_PATH}liuwei/images/intro_up.png" alt=""></div>
+			<div class="intro_paragraph">
+				<p>{dr_block(6)}</p>
+			</div>
+			<div class="intro_down"><img class="img-responsive" src="{THEME_PATH}liuwei/images/intro_down.png" alt=""></div>
+		</div>
+
+		<!--新闻动态-->
+		<div class="index-news">
+			<h3>
+				<a href="{dr_cat_value(24, 'url')}">{dr_cat_value(24, 'name')}</a>
+			</h3>
+            {list action=module catid=24 order=displayorder,updatetime num=1}
+			<a href="#">
+				<img class="img-responsive" src="{dr_get_file($t.thumb)}" alt="">
+			</a>
+			<h4>
+				<a href="{$t.url}">{dr_strcut($t.title, 40)}</a>
+			</h4>
+			<p>{$t.description}</p>
+            {/list}
+		</div>
+
+		<!--产品动态-->
+		<div class="index-product">
+			<h3>
+				<a href="#">{dr_cat_value(25, 'name')}</a>
+			</h3>
+            {list action=module catid=25 order=displayorder,updatetime num=3}
+			<div class="product-dynamics">
+				<a href="#" class="pull-left">
+					<img src="{dr_get_file($t.thumb)}" class="" alt='' />
+				</a>
+				<div>
+					<a href="{$t.url}">{dr_strcut($t.title, 40)}</a>
+				</div>
+			</div>
+            {/list}
+			<a href="{dr_cat_value(1, 'url')}" class="pull-right index-product-more">更多产品>></a>
+		</div>
+	</section>
+</div>
+{template "footer.html"}
