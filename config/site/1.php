@@ -18,7 +18,7 @@ return array(
 	'SITE_THEME'                    => 'default', //网站的主题风格
 	'SITE_TEMPLATE'                 => 'default', //网站的模板目录
 	'SITE_TIMEZONE'                 => 8, //所在的时区常量
-	'SITE_DOMAINS'                  => '', //网站的其他域名
+	'SITE_DOMAINS'                  => '127.0.0.1', //网站的其他域名
 	'SITE_REWRITE'                  => 0, //
 	'SITE_MOBILE'                   => '', //移动端域名
 	'SITE_SEOJOIN'                  => '_', //网站SEO间隔符号
@@ -38,7 +38,7 @@ return array(
 	'SITE_IMAGE_COLOR'              => '', //
 	'SITE_IMAGE_SIZE'               => '', //
 	'SITE_IMAGE_TEXT'               => '', //
-	'SITE_DOMAIN'                   => '127.0.0.1', //网站的域名
+	'SITE_DOMAIN'                   => '192.168.3.182', //网站的域名
 	'SITE_IMAGE_CONTENT'            => 0, //是否内容编辑器显示水印图片
 
 );

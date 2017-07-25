@@ -11,14 +11,7 @@
             <p>NEWS CENTER</p>
         </div>
     </section>
-    <!--<section class="page-position">-->
-        <!--<div class="pull-left page-position">-->
-            <!--<ul>-->
-                <!--<li><a href="index.html">首页</a></li>-->
-                <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</section>-->
+
     <section class="subhead">
 
         <span>{dr_cat_value(4, 'name')}</span>
@@ -33,11 +26,10 @@
                     <input type="text" name="keyword" placeholder="请输入您要查找的新闻">
                 </form>
             </li>
-            <li class="active"><a href="{$top.url}">全部</a></li>
             {list action=category pid=4 }
             {if t.child}
             {list action=category pid=$t.id return=t2}
-            <li><a href="{$t2.url}">{$t2.name}</a></li>
+            <li class="{if in_array($catid, $t2.catids)}active{/if}"><a href="{$t2.url}">{$t2.name}</a></li>
             {/list}
             {/if}
             {/list}
@@ -46,6 +38,20 @@
 
     <section class="media-center">
         <div class="news-list-group">
+           {if $catid==46}
+            {list action=module module=news catid=4 page=1 pagesize=5 urlrule=index.php?page=[page] order=displayorder,updatetime}
+            <div class="news-list">
+                <div class="news-list-img pull-left ">
+                    <a href="{$t.url}"><img src="{dr_get_file($t.thumb)}" alt=""></a>
+                </div>
+                <div class="news-list-body">
+                    <a href="{$t.url}"><p>{$t.title}</p></a>
+                    <p>{$t.description}</p>
+                    <p>{$t.updatetime}</p>
+                </div>
+            </div>
+            {/list}
+            {/if}
             {list action=module module=news catid=$catid page=1 pagesize=5 urlrule=index.php?page=[page] order=displayorder,updatetime}
             <div class="news-list">
                 <div class="news-list-img pull-left ">
@@ -75,11 +81,6 @@
     </section>
     <ul class="media-page">
         {$pagenew}
-        <!--<li><a href="">上一页</a></li>-->
-        <!--<li class="page   -active"><a href="">1</a></li>-->
-        <!--<li><a href="">2</a></li>-->
-        <!--<li><a href="">3</a></li>-->
-        <!--<li><a href="">下一页</a></li>-->
     </ul>
 
 </div>

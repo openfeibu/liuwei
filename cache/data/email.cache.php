@@ -1,1 +1,1 @@
-a:1:{i:0;a:6:{s:2:"id";s:1:"1";s:4:"host";s:12:"smtp.163.com";s:4:"user";s:19:"13539809891@163.com";s:4:"pass";s:10:"F773928614";s:4:"port";s:2:"25";s:12:"displayorder";s:1:"0";}}
+a:2:{i:0;a:6:{s:2:"id";s:1:"3";s:4:"host";s:12:"smtp.139.com";s:4:"user";s:19:"13539809891@139.com";s:4:"pass";s:10:"F773928614";s:4:"port";s:2:"25";s:12:"displayorder";s:1:"1";}i:1;a:6:{s:2:"id";s:1:"1";s:4:"host";s:13:"smtp.sina.com";s:4:"user";s:19:"f773928614@sina.com";s:4:"pass";s:12:"FBc986800305";s:4:"port";s:2:"25";s:12:"displayorder";s:1:"2";}}

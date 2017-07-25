@@ -122,36 +122,42 @@ class Register extends M_Controller {
     {
         if (IS_AJAX) {
             $email = $this->input->post('email');
-            $data = $this->db
-                ->select('uid,username,randcode')
-                ->where('email', $email)
-                ->limit(1)
-                ->get('member')
-                ->row_array();
-            if (!$data) {
-                $randcode = dr_randcode();
-                $this->load->helper('email');
-                $code = @file_get_contents(WEBPATH.'cache/email/find_password.html');
-                $boole = $this->sendmail($email, fc_lang('注册账号通知'), fc_lang($code, "会员", $randcode, $this->input->ip_address()));
-                if (!$boole) {
-                    $arr = [
-                        'code' => '400',
-                        'msg' => '发送失败'
-                    ];
-                    echo json_encode($arr);exit();
+            if ($email!=null) {
+                $data = $this->db
+                    ->select('uid,username,randcode')
+                    ->where('email', $email)
+                    ->limit(1)
+                    ->get('member')
+                    ->row_array();
+                if (!$data) {
+                    $randcode = dr_randcode();
+                    $this->load->helper('email');
+                    $code = @file_get_contents(WEBPATH.'cache/email/find_password.html');
+                    $boole = $this->sendmail($email, fc_lang('注册账号通知'), fc_lang($code, "会员", $randcode, $this->input->ip_address()));
+                    if (!$boole) {
+                        $arr = [
+                            'code' => '400',
+                            'msg' => $code
+                        ];
+                        echo json_encode($arr);exit();
+                    }
+                    set_cookie('register_code', $randcode, 300);
+    //                $this->db->where('uid', $data['uid'])->update('member', array('randcode' => $randcode));
+
+                    echo json_encode([
+                        'code' => 200,
+                        'msg'  => '发送成功'
+                    ]);exit;
+
                 }
-                set_cookie('register_code', $randcode, 300);
-//                $this->db->where('uid', $data['uid'])->update('member', array('randcode' => $randcode));
-
                 echo json_encode([
-                    'code' => 200,
-                    'msg'  => '发送成功'
+                    'code' => 404,
+                    'msg' => '该用户已注册'
                 ]);exit;
-
             }
             echo json_encode([
-                'code' => 404,
-                'msg' => '该用户已注册'
+                'code' => 405,
+                'msg' => '未输入邮箱'
             ]);exit;
         }
     }

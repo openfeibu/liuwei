@@ -8,6 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Feibu" />
 
+
+
+
+    <link rel="stylesheet" href="{THEME_PATH}js/ui-dialog.css">
+    <script type="text/javascript" src="{THEME_PATH}js/dialog-plus.js"></script>
+
     <!--引入CSS文件-->
     <link rel="stylesheet" href="{THEME_PATH}liuwei/CSS/swiper.min.css">
     <link rel="stylesheet" href="{THEME_PATH}liuwei/CSS/bootstrap.css">
@@ -17,13 +23,14 @@
     <!--<link rel="stylesheet" href="{THEME_PATH}liuwei/css/sitelogo.css">-->
 
     <script src="{THEME_PATH}liuwei/JS/jquery-3.2.1.min.js"></script>
-    <script src="{HOME_THEME_PATH}layui/layui.js"></script>
-    <script src="{HOME_THEME_PATH}js/global.js"></script>
+    <!--<script src="{HOME_THEME_PATH}layui/layui.js"></script>-->
+    <!--<script src="{HOME_THEME_PATH}js/global.js"></script>-->
     <script type="text/javascript" src="{THEME_PATH}js/{SITE_LANGUAGE}.js"></script>
     <script type="text/javascript" src="{THEME_PATH}js/dialog-plus.js"></script>
     <script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
     <script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
     <script type="text/javascript" src="{THEME_PATH}liuwei/js/script.js"></script>
+    <script src="{THEME_PATH}liuwei/js/jssor.slider.min.js"></script>
     <script type="text/javascript">
         var memberpath = "{MEMBER_PATH}";
     </script>
@@ -31,7 +38,7 @@
     <style>
 
         /*在线联系*/
-        .fb-rides-cs {  font-size: 12px; background:#00a3e3; position: fixed; top: 250px; right: 0px; _position: absolute; z-index: 1500; border-radius:6px 0px 0 6px;height:220px;}
+        .fb-rides-cs {  font-size: 12px; background:#18A455; position: fixed; top: 250px; right: 0px; _position: absolute; z-index: 1500; border-radius:6px 0px 0 6px;height:220px;}
         .fb-rides-cs a { color: #00A0E9;}
         .fb-rides-cs a:hover { color: #ff8100; text-decoration: none;}
         .fb-rides-cs .fb-floatL { width: 36px; float:left; position: relative; z-index:1;margin-top: 21px;height: 181px;}
@@ -66,15 +73,19 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <p>会员登陆</p>
         <div class="hr"></div>
-        <form action="" class="login-form" id="myform" method="post">
-            <input type="text" class="form-control" placeholder="邮箱" autocomplete="off" name="data[username]">
-            <input type="password" class="form-control" minlength="6" maxlength="16"  placeholder="密码" autocomplete="off" name="data[password]">
-            <a class="forget-pd" href="#">忘记密码？</a>
-            <button type="submit" class="btn btn-block" onclick="dr_submit()">登录</button>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="autologin" name="data[auto]" value="1">下次自动登录
-            </label>
-            <a class="registered" href="#">新用户注册</a>
+        <form action="" class="modal-form form-group" id="myform" method="post">
+            <span class="input-tips index-login-user" style="display: none">用户不存在!</span>
+            <input type="text" class="form-control" placeholder="邮箱" name="data[username]" id="user_email">
+            <span class="input-tips index-login-password" style="display: none">密码不正确!</span>
+            <input type="password" class="form-control" minlength="6" maxlength="16" placeholder="密码" name="data[password]">
+            <a class="forget-pd-a" href="#">忘记密码？</a>
+            <button type="button" class="btn btn-block sub-btn" onclick="dr_submit()">登录</button>
+            <div class="autologin">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="data[auto]" value="1">下次自动登录
+                </label>
+                <a class="registered" href="#">新用户注册</a>
+            </div>
         </form>
     </div>
 </div>
@@ -85,7 +96,7 @@
             success: function(data) {
                 if (data.status) {
                     dr_tips('登录成功，即将为您跳转....', 3, 1);
-                    setTimeout('window.location.href="'+data.backurl+'"', 2000);
+                    setTimeout('window.location.href = "{dr_member_url('home/index')}"', 2000);
                     var sync_url = data.syncurl;
                     // 发送同步登录信息
                     for(var i in sync_url){
@@ -110,7 +121,7 @@
 </script>
 <script type="text/javascript">
     $(function () {
-        $(".forget-pd").click(function () {
+        $(".forget-pd-a").click(function () {
             $(".login-modal").load("{dr_member_url('login/find')}")
         })
     });
@@ -129,33 +140,6 @@
 
 <header>
     <nav>
-        <!--<div class="navheader">-->
-            <!--<div class="wel-sentence">-->
-                <!--{php $gg = @explode(PHP_EOL, dr_block(1));}-->
-                <!--{loop $gg $t}-->
-                <!--{php list($value, $color)=explode('|', $t);}-->
-                <!--<a href="index.html">{$value}</a>-->
-                <!--{/loop}-->
-            <!--</div>-->
-            <!--<ul>-->
-                <!--{php $link = @explode(PHP_EOL, dr_block(5));}-->
-                <!--<li><a href="#">{$link[3]}</a></li>-->
-                <!--&lt;!&ndash; 登陆 &ndash;&gt;-->
-                <!--{if $member}-->
-                <!--<li>-->
-                    <!--<a href="{MEMBER_URL}" class="blog-user">-->
-                        <!--用户：{$member.username}-->
-                    <!--&lt;!&ndash;<img src="{$member.avatar_url}" />&ndash;&gt;-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--{else}-->
-                <!--<li><a href="{dr_member_url('login/index')}">登录</a></li>-->
-                <!--<li>/</li>-->
-                <!--<li><a href="{dr_member_url('register/index')}">注册</a></li>-->
-                <!--{/if}-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="col-md-1"></div>-->
         <div class="navbar">
 
             <!--logo-->
@@ -167,28 +151,39 @@
 
             <!--导航栏-->
             <ul>
-                <!--<li class="active"><a class="active" href="/">首页</a></li>-->
                 {list action=category pid=0}
                 <li class="per-info-nav {if in_array($catid, $t.catids)}active{/if}">
-                    <a href="{$t.url}">{$t.name}</a>
-                    {if $t.child}
+                    <a href="{$t.url}">
+                        {$t.name}
+                        {if $t.id==1}
+                        <span class="caret"></span>
+                        {/if}
+                    </a>
+
+                    {if $t.id==1}
                     <ul class="per-down">
                     {list action=category pid=$t.id return=t2}
-                        <li><a href="{$t2.url}">{$t2.name}</a></li>
+                        <li>
+                            <a href="{$t2.url}">{$t2.name}</a>
+                        </li>
                     {/list}
                     </ul>
                     {/if}
+
                 </li>
                 {/list}
                 {if $member}
                 <li class="per-info-nav">
                     <a href="{MEMBER_URL}"><img src="{$member.avatar_url}" class="img-circle" alt=""></a>
                     <ul class="per-down">
-                        <li><a href="{MEMBER_URL}">个人信息</a></li>
-                        <li><a href="{dr_member_url('login/out')}">退出</a></li>
+                        <li>
+                            <a href="{MEMBER_URL}">个人信息</a>
+                        </li>
+                        <li>
+                            <a href="{dr_member_url('login/out')}">退出</a>
+                        </li>
                     </ul>
                 </li>
-
                 {else}
                 <li class="login-btn">
                     <a href="" data-toggle="modal" data-target=".login">登录</a>

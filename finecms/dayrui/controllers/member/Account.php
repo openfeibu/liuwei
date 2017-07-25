@@ -109,6 +109,19 @@ class Account extends M_Controller {
     }
 
     /**
+     * 修改用户名
+     */
+    public function newusername() {
+
+        $error = 0;
+
+        if (IS_POST) {
+            $newusername = $this->input->post('newusernaem');
+        }
+    }
+
+
+    /**
      * 修改密码
      */
     public function password() {
@@ -204,6 +217,7 @@ class Account extends M_Controller {
                     }
                     list($width, $height, $type, $attr) = getimagesize($dir.'45x45.'.$result[2]);
                     !$type && exit(dr_json(0, '图片字符串不规范'));
+
                 }
             } else {
 
@@ -215,7 +229,7 @@ class Account extends M_Controller {
 
 // 上传图片到服务器
         if (defined('UCSSO_API')) {
-            $rt = ucsso_avatar($this->uid, file_get_contents($dir.'90x90.jpg'));
+            $rt = ucsso_avatar($this->uid, file_get_contents($dir.'100x100.jpg'));
             !$rt['code'] && $this->_json(0, fc_lang('通信失败：%s', $rt['msg']));
         }
 

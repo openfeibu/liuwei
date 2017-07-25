@@ -52,9 +52,6 @@ class Home extends M_Controller {
             ),
         );
 
-
-
-
         // 可用字段
         if ($MEMBER['field']) {
             foreach ($MEMBER['field'] as $t) {

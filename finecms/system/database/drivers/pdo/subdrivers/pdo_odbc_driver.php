@@ -142,7 +142,7 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver {
 			}
 			else
 			{
-				$this->dsn .= 'HOSTNAME='.(empty($this->hostname) ? '127.0.0.1;' : $this->hostname.';');
+				$this->dsn .= 'HOSTNAME='.(empty($this->hostname) ? '192.168.3.182;' : $this->hostname.';');
 			}
 
 			if (isset($this->PORT))

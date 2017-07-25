@@ -76,11 +76,11 @@ return array(
                         'uri' => 'module/index',
                         'icon' => 'fa fa-cogs',
                     ),
-                    array(
-                        'name' => '网站表单',
-                        'uri' => 'form/index',
-                        'icon' => 'fa fa-tasks',
-                    ),
+//                    array(
+//                        'name' => '网站表单',
+//                        'uri' => 'form/index',
+//                        'icon' => 'fa fa-tasks',
+//                    ),
                     array(
                         'name' => '邮件设置',
                         'uri' => 'mail/index',
@@ -148,140 +148,140 @@ return array(
         )
     ),
 
-    array(
-        'name' => '微信',
-        'mark' => 'weixin',
-        'icon' => 'fa fa-weixin',
-        'menu' => array(
-            array(
-                'name' => '微信管理',
-                'mark' => 'weixin-weixin',
-                'icon' => 'fa fa-weixin',
-                'menu' => array(
-
-                    array(
-                        'name' => '账号接入',
-                        'uri' => 'weixin/index',
-                        'icon' => 'fa fa-cog',
-                    ),
-                    array(
-                        'name' => '自定义菜单',
-                        'uri' => 'wmenu/index',
-                        'icon' => 'fa fa-table',
-                    ),
-                    array(
-                        'name' => '微信粉丝',
-                        'uri' => 'wuser/index',
-                        'icon' => 'fa fa-user',
-                    ),
-                )
-            ),
-
-        )
-    ),
-
-
+//    array(
+//        'name' => '微信',
+//        'mark' => 'weixin',
+//        'icon' => 'fa fa-weixin',
+//        'menu' => array(
+//            array(
+//                'name' => '微信管理',
+//                'mark' => 'weixin-weixin',
+//                'icon' => 'fa fa-weixin',
+//                'menu' => array(
+//
+//                    array(
+//                        'name' => '账号接入',
+//                        'uri' => 'weixin/index',
+//                        'icon' => 'fa fa-cog',
+//                    ),
+//                    array(
+//                        'name' => '自定义菜单',
+//                        'uri' => 'wmenu/index',
+//                        'icon' => 'fa fa-table',
+//                    ),
+//                    array(
+//                        'name' => '微信粉丝',
+//                        'uri' => 'wuser/index',
+//                        'icon' => 'fa fa-user',
+//                    ),
+//                )
+//            ),
+//
+//        )
+//    ),
 
 
 
-    array(
-        'name' => '模板',
-        'mark' => '',
-        'icon' => 'fa fa-html5',
-        'menu' => array(
-            array(
-                'name' => '网站模板',
-                'icon' => 'fa fa-folder',
-                'menu' => array(
-                    array(
-                        'name' => '电脑模板',
-                        'uri' => 'tpl/index',
-                        'icon' => 'fa fa-desktop',
-                    ),
-                    array(
-                        'name' => '手机模板',
-                        'uri' => 'tpl/mobile',
-                        'icon' => 'fa fa-mobile',
-                    ),
-                    array(
-                        'name' => '风格样式',
-                        'uri' => 'theme/index',
-                        'icon' => 'fa fa-css3',
-                    ),
-                )
-            ),
-
-        )
-    ),
 
 
-    array(
-        'name' => '插件',
-        'mark' => 'myapp',
-        'icon' => 'fa fa-puzzle-piece',
-        'menu' => array(
-            array(
-                'name' => '插件管理',
-                'mark' => 'app',
-                'icon' => 'fa fa-puzzle-piece',
-                'menu' => array(
-                    array(
-                        'name' => 'URL规则',
-                        'uri' => 'urlrule/index',
-                        'icon' => 'fa fa-magnet',
-                    ),
-                    array(
-                        'name' => '联动菜单',
-                        'uri' => 'linkage/index',
-                        'icon' => 'fa fa-windows',
-                    ),
-                    array(
-                        'name' => '数据结构',
-                        'uri' => 'db/index',
-                        'icon' => 'fa fa-database',
-                    ),
-                )
-            ),
-
-        )
-    ),
-
-
-    array(
-        'name' => '云服务',
-        'mark' => 'mycloud',
-        'icon' => 'fa fa-cloud',
-        'menu' => array(
-            array(
-                'name' => '云服务',
-                'mark' => 'mycloud-app',
-                'icon' => 'fa fa-cloud',
-                'menu' => array(
-                    array(
-                        'name' => '程序升级',
-                        'uri' => 'upgrade/index',
-                        'icon' => 'fa fa-refresh',
-                    ),
-                    array(
-                        'name' => '插件商城',
-                        'uri' => 'home/cjonline',
-                        'icon' => 'fa fa-plug',
-                    ),
-                    array(
-                        'name' => '模板商城',
-                        'uri' => 'home/mbonline',
-                        'icon' => 'fa fa-code',
-                    ),
-                    array(
-                        'name' => '使用文档',
-                        'uri' => 'home/helponline',
-                        'icon' => 'fa fa-book',
-                    ),
-                )
-            ),
-
-        )
-    ),
+//    array(
+//        'name' => '模板',
+//        'mark' => '',
+//        'icon' => 'fa fa-html5',
+//        'menu' => array(
+//            array(
+//                'name' => '网站模板',
+//                'icon' => 'fa fa-folder',
+//                'menu' => array(
+//                    array(
+//                        'name' => '电脑模板',
+//                        'uri' => 'tpl/index',
+//                        'icon' => 'fa fa-desktop',
+//                    ),
+//                    array(
+//                        'name' => '手机模板',
+//                        'uri' => 'tpl/mobile',
+//                        'icon' => 'fa fa-mobile',
+//                    ),
+//                    array(
+//                        'name' => '风格样式',
+//                        'uri' => 'theme/index',
+//                        'icon' => 'fa fa-css3',
+//                    ),
+//                )
+//            ),
+//
+//        )
+//    ),
+//
+//
+//    array(
+//        'name' => '插件',
+//        'mark' => 'myapp',
+//        'icon' => 'fa fa-puzzle-piece',
+//        'menu' => array(
+//            array(
+//                'name' => '插件管理',
+//                'mark' => 'app',
+//                'icon' => 'fa fa-puzzle-piece',
+//                'menu' => array(
+//                    array(
+//                        'name' => 'URL规则',
+//                        'uri' => 'urlrule/index',
+//                        'icon' => 'fa fa-magnet',
+//                    ),
+//                    array(
+//                        'name' => '联动菜单',
+//                        'uri' => 'linkage/index',
+//                        'icon' => 'fa fa-windows',
+//                    ),
+//                    array(
+//                        'name' => '数据结构',
+//                        'uri' => 'db/index',
+//                        'icon' => 'fa fa-database',
+//                    ),
+//                )
+//            ),
+//
+//        )
+//    ),
+//
+//
+//    array(
+//        'name' => '云服务',
+//        'mark' => 'mycloud',
+//        'icon' => 'fa fa-cloud',
+//        'menu' => array(
+//            array(
+//                'name' => '云服务',
+//                'mark' => 'mycloud-app',
+//                'icon' => 'fa fa-cloud',
+//                'menu' => array(
+//                    array(
+//                        'name' => '程序升级',
+//                        'uri' => 'upgrade/index',
+//                        'icon' => 'fa fa-refresh',
+//                    ),
+//                    array(
+//                        'name' => '插件商城· ',
+//                        'uri' => 'home/cjonline',
+//                        'icon' => 'fa fa-plug',
+//                    ),
+//                    array(
+//                        'name' => '模板商城',
+//                        'uri' => 'home/mbonline',
+//                        'icon' => 'fa fa-code',
+//                    ),
+//                    array(
+//                        'name' => '使用文档',
+//                        'uri' => 'home/helponline',
+//                        'icon' => 'fa fa-book',
+//                    ),
+//                )
+//            ),
+//
+//        )
+//    ),
 
 
 );

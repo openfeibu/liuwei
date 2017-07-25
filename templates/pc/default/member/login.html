@@ -8,21 +8,27 @@
 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <p>会员登陆</p>
 <div class="hr"></div>
-<form action="" class="login-form" method="post" id="myform">
-    <input type="text" class="form-control" placeholder="邮箱" autocomplete="off" name="data[username]">
-    <input type="password" class="form-control" placeholder="密码"  autocomplete="off" name="data[password]">
-    <a class="forget-pd" href="#">忘记密码？</a>
-    <button type="submit" class="btn btn-block" onclick="dr_submit()" >登录</button>
-    <label class="checkbox-inline">
-        <input type="checkbox" id="autologin" name="data[auto]" value="1">下次自动登录
-    </label>
-    <a class="registered" href="#">新用户注册</a>
+
+
+<form action="" class="modal-form form-group" id="myform" method="post">
+    <span class="input-tips index-login-user" style="display: none">用户不存在!</span>
+    <input type="text" class="form-control" placeholder="邮箱" name="data[username]" id="user_email">
+    <span class="input-tips index-login-password" style="display: none">密码不正确!</span>
+    <input type="password" class="form-control" minlength="6" maxlength="16" placeholder="密码" name="data[password]">
+    <a class="forget-pd-a" href="#">忘记密码？</a>
+    <button type="button" class="btn btn-block sub-btn" onclick="dr_submit()">登录</button>
+    <div class="autologin">
+        <label class="checkbox-inline">
+            <input type="checkbox" name="data[auto]" value="1">下次自动登录
+        </label>
+        <a class="registered" href="#">新用户注册</a>
+    </div>
 </form>
 
 <script type="text/javascript">
 
     $(function () {
-        $(".forget-pd").click(function () {
+        $(".forget-pd-a").click(function () {
             $(".login-modal").load("{dr_member_url('login/find')}")
         })
     });
@@ -45,8 +51,9 @@
         $.ajax({type: "POST",dataType:"json", url: "{dr_member_url('login/index')}", data: post,
             success: function(data) {
                 if (data.status) {
-                    dr_tips('登录成功，即将为您跳转....', 3, 1);
-                    setTimeout('window.location.href="'+data.backurl+'"', 2000);
+                    dr_tips('{fc_lang("登录成功，即将为您跳转....")}', 3, 1);
+//                    dr_tips('登录成功，即将为您跳转....', 3, 1);
+                    setTimeout('window.location.href = "{dr_member_url('home/index')}"', 2000);
                     var sync_url = data.syncurl;
                     // 发送同步登录信息
                     for(var i in sync_url){
@@ -71,143 +78,3 @@
 </script>
 </body>
 </html>
-
-
-<!--<link href="{THEME_PATH}admin/css/table_form.css" rel="stylesheet" type="text/css" />-->
-<!--<script type="text/javascript">-->
-    <!--$(function() {-->
-        <!--{if $result}-->
-        <!--dr_tips('{$result.msg}');-->
-        <!--{/if}-->
-    <!--});-->
-<!--</script>-->
-<!--<script>-->
-    <!--$(document).ready(function(){-->
-        <!--$("#Submit").click(function get_mobile(){-->
-            <!--var mcode=Math.round(Math.random()*10000);-->
-            <!--$.post('{dr_member_url('register/sendMsg')}',{mobile: $("#mobile").val(),mcode: mcode},function(data){-->
-          	<!--console.log(data);-->
-<!--//			alert(mcode)-->
-
-            <!--});-->
-
-            <!--$("#yanzheng").click(function get_code(){-->
-                <!--$.get("index.php?code="+$("#code").val(),function(data){-->
-       			<!--alert(mcode);-->
-                    <!--if (mcode==$("#code").val())-->
-                    <!--{-->
-                        <!--alert('验证码正确，请继续！');-->
-                    <!--}-->
-                    <!--else{-->
-                        <!--alert('验证码错误');-->
-                    <!--}-->
-                <!--});-->
-            <!--});-->
-        <!--});-->
-
-        <!--var test = {-->
-            <!--node:null,-->
-            <!--count:3,-->
-            <!--start:function(){-->
-                <!--//console.log(this.count);-->
-                <!--if(this.count > 0){-->
-                    <!--this.node.innerHTML = this.count&#45;&#45;;-->
-                    <!--var _this = this;-->
-                    <!--setTimeout(function(){-->
-                        <!--_this.start();-->
-                    <!--},1000);-->
-                <!--}else{-->
-                    <!--this.node.removeAttribute("disabled");-->
-                    <!--this.node.innerHTML = "再次发送";-->
-                    <!--this.count = 3;-->
-                <!--}-->
-            <!--},-->
-            <!--//初始化-->
-            <!--init:function(node){-->
-                <!--this.node = node;-->
-                <!--this.node.setAttribute("disabled",true);-->
-                <!--this.start();-->
-            <!--}-->
-        <!--};-->
-        <!--var btn = document.getElementById("Submit");-->
-        <!--btn.onclick = function(){-->
-            <!--//alert("验证信息会发送到"+$("#number").val());-->
-            <!--test.init(btn);-->
-        <!--};-->
-    <!--});-->
-<!--</script>-->
-
-<!--<div class="blog-body">-->
-	<!--<div class="blog-container">-->
-		<!--<blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">-->
-			<!--<a href="/" title="网站首页">网站首页</a>-->
-			<!--<a><cite>会员登录</cite></a>-->
-		<!--</blockquote>-->
-		<!--<div class="blog-main">-->
-			<!--<div class="portlet light">-->
-				<!--<div class="portlet-body">-->
-					<!--<div class="row">-->
-						<!--<div class="col-md-4 col-md-offset-4 member-form">-->
-							<!--<form class="login-form" id="myform" action="" method="post">-->
-								<!--<input type="hidden" name="back" value="{$back_url}">-->
-
-								<!--<div class="form-group">-->
-									<!--<label class="control-label visible-ie8 visible-ie9">会员名称</label>-->
-									<!--<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="data[username]" />-->
-								<!--</div>-->
-								<!--<div class="form-group">-->
-									<!--<label class="control-label visible-ie8 visible-ie9">登录密码</label>-->
-									<!--<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="data[password]" />-->
-								<!--</div>-->
-
-								<!--&lt;!&ndash;<p>手机号：<input type="text" name="mobile" value="" id="mobile" onblur="check_mobile(this.value)"/><span id="mobile_notice"></span></p>&ndash;&gt;-->
-								<!--&lt;!&ndash;<p>验证码：<input type="text" name="code" value="" id="code"/><button id="Submit">获取验证码</button></p>&ndash;&gt;-->
-								<!--&lt;!&ndash;<input type="submit" name="yanzheng" value="下一步" id="yanzheng" />&ndash;&gt;-->
-
-								<!--<div class="form-actions">-->
-									<!--<button type="button" onclick="dr_submit()" class="btn green uppercase">登录</button>-->
-									<!--<label class="rememberme check">-->
-										<!--<input type="checkbox" name="data[auto]" value="1" checked="checked" />免登录 </label>-->
-									<!--<a href="{dr_member_url('login/find')}" class="forget-password">找回密码</a>-->
-									<!--<a href="{dr_member_url('register/index')}" id="register-btn" class="uppercase">注册账号</a>-->
-								<!--</div>-->
-
-							<!--</form>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-
-<!--<script type="text/javascript">-->
-    <!--function dr_submit() {-->
-        <!--var post = $("#myform").serialize();-->
-        <!--$.ajax({type: "POST",dataType:"json", url: "{dr_member_url('login/index')}", data: post,-->
-            <!--success: function(data) {-->
-                <!--if (data.status) {-->
-                    <!--dr_tips('登录成功，即将为您跳转....', 3, 1);-->
-                    <!--setTimeout('window.location.href="'+data.backurl+'"', 2000);-->
-                    <!--var sync_url = data.syncurl;-->
-                    <!--// 发送同步登录信息-->
-                    <!--for(var i in sync_url){-->
-                        <!--$.ajax({-->
-                            <!--type: "GET",-->
-                            <!--async: false,-->
-                            <!--url:sync_url[i],-->
-                            <!--dataType: "jsonp",-->
-                            <!--success: function(json){ },-->
-                            <!--error: function(){ }-->
-                        <!--});-->
-                    <!--}-->
-                <!--} else {-->
-                    <!--dr_tips(data.code);-->
-                <!--}-->
-            <!--},-->
-            <!--error: function(HttpRequest, ajaxOptions, thrownError) {-->
-                <!--alert(HttpRequest.responseText);-->
-            <!--}-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->

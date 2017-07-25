@@ -1,19 +1,26 @@
 /*引入Glyphicons 字体图标*/
 @font-face {
-    src:url('../font/glyphicons-halflings-regular.svg');
-    src: url('../font/glyphicons-halflings-regular.ttf');
+    src:url('../fonts/glyphicons-halflings-regular.svg');
+    src: url('../fonts/glyphicons-halflings-regular.ttf');
+}
+html {
+    height: 100%;
 }
 body {
     margin: 0;
     padding: 0;
     font-size: 16px;
+    min-height: 100%;
+    position: relative;
 }
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
+a:focus {
+    text-decoration: none;
+}
 /*页头样式开始*/
 .navheader {
     width: 1000px;
@@ -144,10 +151,12 @@ nav>.logo+ul>.active>a {
 footer {
     width: 100%;
     min-width: 1200px;
-    height: auto;
+    height: 81PX;
     margin: 0 auto;
     background-color: #333333;
     color: #fff;
+    position: absolute;
+    bottom: 0;
 }
 .footer-content {
     width: 1200px;
@@ -163,7 +172,7 @@ footer .footer-content ul {
     float: left;
     padding-top: 15px;
     padding-bottom: 14px;
-    /*font-size: 18px;*/
+    /*fonts-size: 18px;*/
 }
 .footer-content ul:nth-child(1) li {
     display: inline-block;
@@ -246,8 +255,8 @@ footer .footer-content ul {
     color:#009944;
 }
 .search {
-    border-left: 1px solid #999999;
-    border-right: 1px solid #999999;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
     margin-top: 1px;
     height: 24px;
 }
@@ -267,7 +276,9 @@ footer .footer-content ul {
 .subhead ul li:first-child {
     height: 20px;
 }
-
+.content {
+    padding-bottom: 81px;
+}
 /*统一样式结束*/
 /*QQ咨询样式开始*/
 .consult {
@@ -292,93 +303,140 @@ footer .footer-content ul {
     color: #fff;
 }
 /*QQ咨询样式结束*/
-/*登录框样式开始*/
-.login .login-modal {
+/*登录选项开始*/
+
+/*模拟框统一样式*/
+.modal-form {
+    width: 321px;
+    margin: 0 auto;
+}
+.modal-form>.form-control {
+    font-size: 14px;
+    margin: 20px 0;
+    background-color: #F5F5F5;
+}
+.modal>.login-modal {
     width: 400px;
-    height: 425px;
     background-color: #fff;
     margin: 10% auto;
+    position: relative;
 }
-.login-modal .close {
+.login-modal>.close {
     font-size: 41px;
     font-weight: 400;
+    position: absolute;
+    right: 5px;
 }
-.login-modal p {
+.login-modal>p {
     font-size: 16px;
     /*line-height: 3;*/
     color: #555555;
     text-align: center;
     padding-top: 40px;
-    padding-left: 46px;
     margin-bottom: 30px;
 }
-.login-modal .hr {
+.login-modal>.hr {
     width: 321px;
     height: 1px;
-    background-color: #999999;
+    background-color: #dddddd;
     margin:0 auto 29px auto;
 }
-.login-form,.change-pd {
-    width: 321px;
-    margin: 0 auto;
-}
-.login-form .form-control,.change-pd .form-control {
+.input-tips {
     font-size: 14px;
-    /*line-height: 24px;*/
-    margin: 20px 0;
-    background-color: #F5F5F5;
+    color:#ef5454 ;
+    position: absolute;
+    right: 40px;
 }
-.change-pd .form-control:nth-child(2) {
-    margin:  0;
-    width: 64%;
-    display: inline-block;
-}
-.change-pd .send-code {
-    display: inline-block;
-    background-color: #10AC5F;
-    margin-left: 8px;
-    color: #fff;
-}
-.change-pd .send-code[disabled] {
-    background-color: #F5F5F5;
-    color: #333333;
-}
-.change-pd .bt-ch {
+.modal-form .btn {
     background-color:#10AC5F ;
     color: #fff;
 }
-.change-pd .bt-ch[disabled] {
+.modal-form .btn[disabled] {
     background-color: #F5F5F5;
     color: #333333;
 }
-.login-form .form-control:focus {
+.form-control {
+    background-color:#F5F5F5 ;
+}
+.form-control:focus {
     background-color: #FFFFFF;
 }
-.forget-pd {
+.error {
+    font-size: 14px;
+    margin: 0;
+    color:#ef5454 ;
+}
+/*模拟框统一样式结束*/
+/*登录框样式开始*/
+.index-login-user {
+    right: 40px;
+    top: 98px;
+}
+.index-login-password {
+    right: 40px;
+    top: 156px;
+}
+.forget-pd-a {
+    font-size: 14px;
     color: #555555;
     float: right;
     margin-bottom: 20px;
 }
-.forget-pd:hover {
+.forget-pd-a:hover {
     color: #009E4A;
     text-decoration: none;
 }
-.login-form .btn {
-    background-color: #10AC5F;
-    margin-bottom: 20px;
-    color: #fff;
+.checkbox-inline {
+    font-size: 14px;
 }
-.login-form .btn[disabled] {
-    background-color: #F5F5F5;
-    color: #333333;
+.autologin {
+    padding-top: 20px;
+    padding-bottom:40px ;
 }
-#autologin:checked+label {
-    background-color:#10AC5F;!important;
+/*登录框样式结束*/
+/*忘记密码框样式开始*/
+.input-code {
+    margin:  0;
+    width: 52%;
+    display: inline-block;
 }
+.modal-form>.input-code {
+    margin: 0;
+}
+.go-login {
+    height: 22px;
+    clear: both;
+    padding: 10px 0 60px 0;
+}
+.go-login>p>a {
+    color: #009E4A;
+}
+.go-login>p>a:hover {
+    color: #999999;
+    text-decoration: none;
+}
+.forget-email {
+    top: 98px;
+}
+.forget-code {
+    top: 156px;
+    right: 170px;
+}
+.forget-pd {
+    top: 210px;
+}
+.forget-pd-ag {
+    top: 265px;
+}
+/*忘记密码框样式结束*/
+/*个人中心页修改密码样式开始*/
+
+/*个人中心页修改密码样式结束*/
 .registered {
     color: #009E4A;
     float: right;
     margin-bottom: 20px;
+    font-size: 14px;
 }
 .registered:hover {
     text-decoration: none;
@@ -402,7 +460,21 @@ footer .footer-content ul {
     background-color: #F5F5F5;
     color: #333333;
 }
-
+.form-checked {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    float: right;
+}
+.form-checked-t {
+    color: #009E4A;
+}
+.form-checked-f {
+    color: #ef5454;
+}
+.form-error {
+    border-color:#ef5454;
+}
 /*登录框样式结束*/
 
 /*首页样式开始*/
@@ -410,67 +482,60 @@ footer .footer-content ul {
 /*轮播图*/
 .index-carousel {
     width: 1200px;
-    height: 381px;
+    height: 380px;
     margin: 0 auto;
     padding: 0 0 19px 0;
     position: relative;
 }
-.gallery-top {
-    width: 100%;
-    height: 100%;
-}
-.gallery-thumbs {
-    width: 381px;
-    margin: 0 auto;
+#slider1_container {
     position: relative;
-    bottom: 61px;
+    width: 1200px;
+    height: 380px;
+    overflow: hidden;
 }
-.index-carousel>.gallery-thumbs>.swiper-wrapper>.swiper-slide {
-    width: 121px;
-    margin-right: 9px;
+.slider1_slides {
+    cursor: move;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 1200px;
+    height: 380px;
 }
-.index-carousel>.gallery-thumbs>.swiper-wrapper>.swiper-slide>img  {
-    width: 121px;
-    height: 51px;
-}
-.swiper-button-next {
+.jssoral, .jssorar {
+    display: block;
+    position: absolute;
     width: 50px;
     height: 50px;
-    background-color: rgba(255,255,255,0.3);
-    margin: 0;
-    position: absolute;
-    top: 301px;
-    right: 349px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: rgba(236,236,236,0.3);
 }
-.swiper-button-prev {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255,255,255,0.3);
-    margin: 0;
-    position: absolute;
-    top: 301px;
-    left: 349px;
+.jssoral {
+    background-position: -10px -35px;
+    /*background-image: url("../images/arrow-left.png");*/
+    top: 123px;
+    left: 50px;
 }
-.gallery-thumbs>.swiper-wrapper .swiper-slide:hover {
-    border: 3px solid rgba(0,158,74,0.6);
+.jssoral>.glyphicon-menu-left {
+    padding: 14px 15px 10px 16px;
+    font-size: 20px;
 }
-.index-carousel .swiper-pagination-bullet {
-    border-radius: 0;
-    width: 120px;
-    height: 51px;
-    background-image: url("../images/banner-1.png");
-    background-size: cover;
-    margin-right: 9px;
-    display: inline-block;
+.jssorar>.glyphicon-menu-right {
+    padding: 14px 15px 10px 16px;
+    font-size: 20px;
 }
-/*.index-carousel .swiper-pagination-bullet-active {*/
-    /*background-color: #009944;*/
-/*}*/
-.index-carousel .swiper-pagination {
-    width: 390px;
-    position: absolute;
-    bottom: 24px;
-    left: 409px;
+.jssorar {
+    background-position: -70px -35px;
+    /*background-image: url("../images/arrow-right.png");*/
+    top: 123px;
+    right: 50px;
+}
+.jssoral:hover {
+    background-color:rgba(236,236,236,0.5) ;
+}
+.jssorar:hover {
+    background-color:rgba(236,236,236,0.5) ;
 }
 
 /*动态*/
@@ -552,32 +617,29 @@ footer .footer-content ul {
 }
 .product-dynamics {
     width: 290px;
-    height: 50px;
-    margin: 20px 0;
+    height: 70px;
+    margin: 5px 0;
 }
 .product-dynamics>a>img {
-    width: 80px;
-    height: 50px;
+    float: left;
+    width: 70px;
+    height: 70px;
 }
-.product-dynamics>div {
+.product-dynamics>a>p {
+    font-size: 14px;
     width: 192px;
     float: right;
+    color: #555555;
 }
-
-.product-dynamics>div>a {
-    font-size: 16px;
-    line-height: 24px;
-    color: #666666;
-}
-.product-dynamics>div>a:hover {
-    text-decoration: none;
-    color: #009E4A;
+.product-dynamics>a>p:hover {
+    color: #009944;
 }
 .index-product-more,.index-product-more:hover {
     font-size: 16px;
     line-height: 24px;
     color: #009E4A;
-    margin-top: 14px;
+    margin-top: 5px;
+    text-decoration: none;
 }
 
 
@@ -601,7 +663,7 @@ footer .footer-content ul {
 }
 #customer-case {
     width: 1000px;
-    height: 900px;
+    /*height: 900px;*/
     margin: 30px auto;
     /*padding-bottom: 2%;*/
     font-size: 0;
@@ -670,19 +732,21 @@ footer .footer-content ul {
 
 .media-center {
     width: 1000px;
-    height: 800px;
-    margin: 0 auto;
+    height: auto;
+    position: relative;
+    left: 50%;
+    margin-left: -500px;
+    display: inline-block;
 }
 .news-list {
     background-color: #fafafa;
     width: 540px;
     height: 120px;
     margin-bottom: 20px;
-    position: relative;
 }
 .news-list-group {
     width: 540px;
-    height: 800px;
+    height: auto;
     float: left;
 }
 .news-list-body {
@@ -710,50 +774,26 @@ footer .footer-content ul {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.news-list-body p:nth-child(2) {
+.news-list-body>p:nth-child(2) {
     font-size: 14px;
-    position: relative;
     line-height: 1.2em;
-    height: 2.4em;
+    color: #999999;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow:ellipsis;
+    -webkit-line-clamp:2;
     overflow: hidden;
-    color: #999999;
-}
 
-.news-list-body p:nth-child(2):after {
-    content: "...";
-    position: absolute;
-    font-weight: bold;
-    bottom: 0;
-    right: 0;
-    padding: 0 15px 0 0;
-    background-color:#fafafa;
 }
-.news-list-body p:nth-child(3) {
-    font-size: 12px;
-    color: #999999;
-}
-/*.news-list-group .news-list:nth-child(4) .news-list-body,.news-list-group .news-list:nth-child(5) .news-list-body {*/
-    /*width: 540px;*/
-/*}*/
 .news-group h4 {
     margin-top: 0;
 }
 .news-group ul li a p {
     font-size: 14px;
-    position: relative;
     line-height: 1.9em;
     height: 3.8em;
     color: #65b4ec;
     overflow: hidden;
-}
-.news-group ul li a p:after {
-    content: "...";
-    position: absolute;
-    font-weight: bold;
-    bottom: 0;
-    right: 0;
-    padding: 0 15px 0 0;
-    background-color:#fff;
 }
 .news-group {
     width: 234px;
@@ -830,7 +870,7 @@ footer .footer-content ul {
 /*合作伙伴开始*/
 .partner-profile {
     width: 1000px;
-    height: 1125px;
+    /*height: 1125px;*/
     margin: 0 auto;
     font-size: 0;
 }
@@ -946,6 +986,13 @@ footer .footer-content ul {
 }
 .pro-list:hover {
     box-shadow: 5px 0 2px rgba(153,153,153,0.2);
+}
+.click-opt {
+    display: inline-block;
+}
+.search>input:focus {
+    border: 0;
+    outline:0;
 }
 /*产品中心样式结束*/
 
@@ -1092,7 +1139,7 @@ footer .footer-content ul {
 }
 .info-det-bl {
     height: 80px;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #dddddd;
     padding: 20px 0;
 }
 .info-det-bl>div {
@@ -1287,4 +1334,44 @@ footer .footer-content ul {
     color: #555555;
     font-weight: 600;
 }
+.has-feedback>.control-label {
+    color: #555555;
+}
 /*个人中心页样式结束*/
+.imageBox
+{
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}

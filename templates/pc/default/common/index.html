@@ -4,39 +4,37 @@
 <!--轮播图开始-->
 <div class="content">
 	<section class="index-carousel">
-		<!-- Swiper -->
-		<div class="swiper-container gallery-top">
-			<div class="swiper-wrapper">
-				{php $block=dr_block(4);}
-				<div class="swiper-slide">
-					<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">
-				</div>
-				<div class="swiper-slide">
-					<img class="img-responsive" src="{dr_get_file($block.file.1)}" alt="">
-				</div>
-				<div class="swiper-slide">
-					<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">
-				</div>
+		<script>
+            init_jssor_slider1 = function (containerId) {
+                var options = {
+                    $DragOrientation: 3,
+                    $SlideDuration: 500,
+                    $AutoPlay:true,
+                    $Idle:2000,
+
+                    $ArrowNavigatorOptions: {
+                        $Class: $JssorArrowNavigator$,
+                        $ChanceToShow: 2,
+                        $AutoCenter: 2,
+                        $Steps: 1
+                    }
+                }
+                var jssor_slider1 = new $JssorSlider$(containerId, options);
+            };
+		</script>
+		<div id="slider1_container">
+			{php $block=dr_block(4);}
+			<div u="slides" class="slider1_slides">
+				<div><img u="image" src="{dr_get_file($block.file.0)}" /></div>
+				<div><img u="image" src="{dr_get_file($block.file.1)}" /></div>
+				<div><img u="image" src="{dr_get_file($block.file.2)}" /></div>
 			</div>
-			<!-- Add Arrows -->
+			<span u="arrowleft" class="jssoral"> <span class="glyphicon glyphicon-menu-left"></span> </span>
+			<span u="arrowright" class="jssorar"> <span class="glyphicon glyphicon-menu-right"></span> </span>
+			<script>
+                init_jssor_slider1("slider1_container");
+			</script>
 		</div>
-		<div class="swiper-pagination"></div>
-		<!--<div class="swiper-container gallery-thumbs">-->
-			<!--<div class="swiper-wrapper">-->
-				<!--<div class="swiper-slide">-->
-					<!--<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">-->
-				<!--</div>-->
-				<!--<div class="swiper-slide">-->
-					<!--<img class="img-responsive" src="{dr_get_file($block.file.1)}" alt="">-->
-				<!--</div>-->
-				<!--<div class="swiper-slide">-->
-					<!--<img class="img-responsive" src="{dr_get_file($block.file.0)}" alt="">-->
-				<!--</div>-->
-			<!--</div>-->
-			<!-- Add Arrows -->
-		<!--</div>-->
-		<div class="swiper-button-next swiper-button-white"></div>
-		<div class="swiper-button-prev swiper-button-white"></div>
 	</section>
 	<!--轮播图结束-->
 
@@ -55,7 +53,7 @@
 				<a href="{dr_cat_value(24, 'url')}">{dr_cat_value(24, 'name')}</a>
 			</h3>
             {list action=module catid=24 order=displayorder,updatetime num=1}
-			<a href="#">
+			<a href="{$t.url}">
 				<img class="img-responsive" src="{dr_get_file($t.thumb)}" alt="">
 			</a>
 			<h4>
@@ -68,19 +66,17 @@
 		<!--产品动态-->
 		<div class="index-product">
 			<h3>
-				<a href="#">{dr_cat_value(25, 'name')}</a>
+				<a href="{dr_cat_value(2, 'url')}">产品动态</a>
 			</h3>
-            {list action=module catid=25 order=displayorder,updatetime num=3}
+            {list action=module catid=26 order=displayorder,updatetime num=3}
 			<div class="product-dynamics">
-				<a href="#" class="pull-left">
+				<a href="{$t.url}">
 					<img src="{dr_get_file($t.thumb)}" class="" alt='' />
+					<p>{dr_strcut($t.title, 40)}</p>
 				</a>
-				<div>
-					<a href="{$t.url}">{dr_strcut($t.title, 40)}</a>
-				</div>
 			</div>
             {/list}
-			<a href="{dr_cat_value(1, 'url')}" class="pull-right index-product-more">更多产品>></a>
+			<a href="{dr_cat_value(2, 'url')}" class="pull-right index-product-more">更多产品>></a>
 		</div>
 	</section>
 </div>

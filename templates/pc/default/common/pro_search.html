@@ -23,7 +23,6 @@
                     <input type="text" name="keyword" placeholder="请输入您要查找的产品">
                 </form>
             </li>
-            <li class="active"><a href="{dr_cat_value(2, 'url')}">全部</a></li>
             {list action=category pid=2 }
             {if t.child}
             {list action=category pid=$t.id return=t2}
@@ -49,11 +48,11 @@
         </div>
         {/list}
     </section>
-    <!--<div class="search-pagination">-->
-    <!--<ul class="pagination">-->
-    <!--{$pages}-->
-    <!--</ul>-->
-    <!--</div>-->
+    <div class="search-pagination">
+    <ul class="pagination">
+    {$pages}
+    </ul>
+    </div>
 </div>
 <!--内容结束-->
 

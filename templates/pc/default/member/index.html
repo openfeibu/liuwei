@@ -3,53 +3,50 @@
 	<img src=""/>
 </div>
 
-<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-	<div class="ch-img-modal">
-		<div class="modal-content">
-			<form class="avatar-form">
-				<div class="ch-img-modal-header">
-					<button class="close" data-dismiss="modal" type="button">&times;</button>
-					<p class="ch-img-title" id="avatar-modal-label">修改头像</p>
-				</div>
-				<div class="modal-body">
-					<div class="avatar-body">
-						<div class="avatar-upload">
-							<!--<input class="avatar-src" name="avatar_src" type="hidden">-->
-							<!--<input class="avatar-data" name="avatar_data" type="hidden">-->
-							<label for="avatarInput" style="line-height: 35px;">图片上传</label>
-							<button class="btn"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
-							<!--<span id="avatar-name"></span>-->
-							<input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file">
-						</div>
-						<div class="avatar-wrapper"></div>
-						<div class="avatar-preview preview-md"></div>
-						<div class="hr"></div>
-						<div class="avatar-btns">
-							<button class="btn avatar-save fa fa-save" type="button" data-dismiss="modal" onclick="dr_save()"> 保存修改</button>
-							<button type="button" class="btn fa fa-refresh" data-method="reset">
-								重置图片<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<script type="text/javascript">
-    function dr_save() {
-        dr_tips('正在上传...', 3, 2);
-        var tx = $('#mytx img').attr('src');
-        $.post("{dr_member_url('account/upload', array('iajax' => 1))}", {tx: tx}, function(data) {
-            if(data == 1) {
-                dr_tips('上传成功', 3, 1);
-                window.location.reload();
-            } else {
-                dr_tips('上传失败：'+data.code);
-            }
-        }, 'json');
-    }
-</script>
+<!--<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">-->
+	<!--<div class="ch-img-modal">-->
+		<!--<div class="modal-content">-->
+			<!--<form class="avatar-form">-->
+				<!--<div class="ch-img-modal-header">-->
+					<!--<button class="close" data-dismiss="modal" type="button">&times;</button>-->
+					<!--<p class="ch-img-title" id="avatar-modal-label">修改头像</p>-->
+				<!--</div>-->
+				<!--<div class="modal-body">-->
+					<!--<div class="avatar-body">-->
+						<!--<div class="avatar-upload">-->
+							<!--<label for="avatarInput" style="line-height: 35px;">图片上传</label>-->
+							<!--<button class="btn"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();" >请选择图片</button>-->
+							<!--<input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file" name="...">-->
+						<!--</div>-->
+						<!--<div class="avatar-wrapper" id="mytx"></div>-->
+						<!--<div class="avatar-preview preview-md" ></div>-->
+						<!--<div class="hr"></div>-->
+						<!--<div class="avatar-btns">-->
+							<!--<button class="btn avatar-save fa fa-save" type="button" data-dismiss="modal" onclick="dr_save()">保存修改</button>-->
+							<!--<button type="button" class="btn fa fa-refresh" data-method="reset">-->
+								<!--重置图片<span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>-->
+							<!--</button>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</form>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+<!--<script type="text/javascript">-->
+    <!--function dr_save() {-->
+        <!--dr_tips('正在上传...', 3, 2);-->
+        <!--var tx = $('#mytx img').attr('src');-->
+        <!--$.post("{dr_member_url('account/upload', array('iajax' => 1))}", {tx: tx}, function(data) {-->
+            <!--if(data == 1) {-->
+                <!--dr_tips('上传成功', 3, 1);-->
+                <!--window.location.reload();-->
+            <!--} else {-->
+                <!--dr_tips('上传失败：'+data.code);-->
+            <!--}-->
+        <!--}, 'json');-->
+    <!--}-->
+<!--</script>-->
 <script src="{THEME_PATH}liuwei/js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
 
 <!--内容开始-->
@@ -80,11 +77,27 @@
 				<div class="ch-na-modal">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<p>修改用户名</p>
-					<form action="" class="ch-na-form form-group">
+					<form action="" class="ch-na-form form-group" method="post">
+						<input name="uid" type="hidden" value="{$uid}" id="uid"/>
 						<label for="pre-ch-na">请输入新用户名:</label>
-						<input type="text" id="pre-ch-na" class="form-control" placeholder="六为防水">
-						<button class="btn btn-block">确认修改</button>
+						<span class="form-checked form-checked-t"></span>
+						<input type="text" id="pre-ch-na" class="form-control" placeholder="用户名">
+						<button class="btn btn-block" onclick="ch_username()" id="pre-ch-na-btn">确认修改</button>
 					</form>
+					<!--<script>-->
+						<!--function ch_username() {-->
+                            <!--$.ajax({-->
+                                <!--type: "POST", dataType: "json", url: "{dr_member_url('account/newusername')}", data: post,-->
+                                <!--success: function (data) {-->
+
+                                <!--} ,-->
+                                <!--error: function(HttpRequest, ajaxOptions, thrownError) {-->
+                                    <!--alert(HttpRequest.responseText);-->
+                                <!--}-->
+                            <!--});-->
+                        <!--}-->
+					<!--</script>-->
+
 				</div>
 			</div>
 			<div class="info-det-bl">
@@ -94,10 +107,11 @@
 				<div class="det-body">
 					<p>{$member.username}</p>
 				</div>
-				<div class="det-btn pull-right">
-					<button class="btn" data-toggle="modal" data-target=".ch-na">修改</button>
-				</div>
+				<!--<div class="det-btn pull-right">-->
+					<!--<button class="btn" data-toggle="modal" data-target=".ch-na">修改</button>-->
+				<!--</div>-->
 			</div>
+
 			<div class="info-det-bl">
 				<div class="det-title">
 					<p>邮箱</p>
@@ -114,12 +128,12 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<p>修改密码</p>
 					<form action="" class="ch-na-form form-group" method="post">
-						<label><span>旧密码: </span>（请先验证旧密码）</label>
-						<input type="password" class="form-control"  name="password" id="oldPwd">
-						<label><span>新密码: </span>（最小长度为6个字符）</label>
-						<input type="password" class="form-control" name="password1" id="newPwd">
-						<label><span>确认密码: </span>（最小长度为6个字符）</label>
-						<input type="password" class="form-control" name="password2" id="checkPwd">
+						<label class="control-label"><span>旧密码: </span>（请先验证旧密码）</label>
+						<input type="password" class="form-control" id="oldPwd" name="password">
+						<label class="control-label"><span>新密码: </span>（最小长度为6个字符）</label>
+						<input type="password" class="form-control" id="newPwd" name="password1">
+						<label class="control-label"><span>确认密码: </span>（最小长度为6个字符）</label>
+						<input type="password" class="form-control" id="checkPwd" name="password2">
 						<button class="btn btn-block" type="button" onclick="validOldPwd()">确认修改</button>
 					</form>
 				</div>
@@ -144,74 +158,38 @@
     function validOldPwd() {
         $.post("{dr_member_url('account/cpassword')}",{password: $("#oldPwd").val()},function(data){
             console.log(data)
-			if (data == '旧密码不正确') {
-                $("#err_oldPwd").html(data);
-                $("#err_oldPwd_group").addClass('has-error');
+			if (data) {
+                dr_tips('旧密码不正确', 3, 1);
 			} else {
-                $("#err_oldPwd").html('');
-                $("#err_oldPwd_group").addClass('has-error');
+//                dr_tips('修改成功', 3, 1);
+                $.post("{dr_member_url('account/password')}",{password: $("#oldPwd").val(),password1: $("#newPwd").val(),password2: $("#checkPwd").val()},function(data){
+                    if (data) {
+                        dr_tips('修改成功', 3, 1);
+                        setTimeout('window.location.href = "{dr_member_url('home/index')}"', 2000);
+                    } else {
+                        dr_tips('修改失败，请重新输入修改', 3, 1);
+                    }
+                });
 			}
-//            if (data) {
-
-//            } else {
-//                $("#err_oldPwd").html('');
-//                $("#err_oldPwd_group").removeClass('has-error');
-//            }
         });
-        $.post("{dr_member_url('account/password')}",{password: $("#oldPwd").val(),password1: $("#newPwd").val(),password2: $("#checkPwd").val()},function(data){
-            if (data) {
-                $("#err_oldPwd").html(data);
-                $("#err_oldPwd_group").addClass('has-error');
-            } else {
-                $("#err_oldPwd").html('');
-                $("#err_oldPwd_group").removeClass('has-error');
-            }
-        });
-
     }
+    $(document).ready(function () {
+        var asd = true;
+        if (asd ) {
+            $('#pre-ch-na-btn').removeAttr('disabled');
+            $('#pre-ch-na').removeClass('form-error');
+            $('.form-checked').removeClass('form-checked-f');
+            $('.form-checked').addClass('form-checked-t');
+            $('.form-checked').text('用户名可用')
+        }
+        else {
+            $('#pre-ch-na-btn').attr('disabled', true);
+            $('#pre-ch-na').addClass('form-error');
+            $('.form-checked').removeClass('form-checked-t');
+            $('.form-checked').addClass('form-checked-f');
+            $('.form-checked').text('用户名已存在！')
+        }
+    })
 </script>
 
 {template "footer.html", "/"}
-
-
-
-<!--<script type="text/javascript">-->
-    <!--$(function(){-->
-        <!--{if $result_error}-->
-        <!--dr_tips('{$result_error.msg}', 3);-->
-        <!--{/if}-->
-    <!--});-->
-<!--</script>-->
-
-<!--<div class="blog-module shadow">-->
-	<!--<div class="blog-module-title">修改资料</div>-->
-
-	<!--<div class="member-form">-->
-
-		<!--<form action="" method="post" class="form-horizontal" novalidate="novalidate">-->
-			<!--<input type="hidden" name="data[uid]" value="{$member.uid}">-->
-			<!--<div class="form-body">-->
-				<!--<div class="form-group">-->
-					<!--<label class="col-md-2 control-label">邮箱：</label>-->
-					<!--<div class="col-md-10" style="padding-top: 10px;">-->
-						<!--{$member.email}-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--{$myfield}-->
-			<!--</div>-->
-
-			<!--<div class="form-actions">-->
-				<!--<div class="row">-->
-					<!--<div class="col-md-offset-2 col-md-3">-->
-						<!--<button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-
-		<!--</form>-->
-
-	<!--</div>-->
-<!--</div>-->
-
-
-

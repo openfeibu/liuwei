@@ -11,14 +11,7 @@
             <p>NEWS CENTER</p>
         </div>
     </section>
-    <!--<section class="page-position">-->
-    <!--<div class="pull-left page-position">-->
-    <!--<ul>-->
-    <!--<li><a href="index.html">首页</a></li>-->
-    <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</section>-->
+
     <section class="subhead">
         <span>{dr_cat_value(4, 'name')}</span>
         <ul class="pull-right">
@@ -27,11 +20,12 @@
                     <input type="hidden" name="c" value="search">
                     <input type="hidden" name="mid" value="news">
                     <input type="hidden" name="m" value="news_search">
-                    <button type="submit"><img src="{THEME_PATH}liuwei/images/ic_search.png" alt=""></button>
+                    <button type="submit">
+                        <img src="{THEME_PATH}liuwei/images/ic_search.png" alt="">
+                    </button>
                     <input type="text" name="keyword" placeholder="请输入您要查找的新闻">
                 </form>
             </li>
-            <li class="active"><a href="{$top.url}">全部</a></li>
             {list action=category pid=4 }
             {if t.child}
             {list action=category pid=$t.id return=t2}
@@ -72,13 +66,7 @@
     </section>
     <ul class="media-page">
         {$pagenew}
-        <!--<li><a href="">上一页</a></li>-->
-        <!--<li class="page   -active"><a href="">1</a></li>-->
-        <!--<li><a href="">2</a></li>-->
-        <!--<li><a href="">3</a></li>-->
-        <!--<li><a href="">下一页</a></li>-->
     </ul>
-
 </div>
 
 <!--内容结束-->

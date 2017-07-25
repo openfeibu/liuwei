@@ -32,6 +32,7 @@ class Login extends M_Controller {
 			} elseif (!$data['password'] || !$data['username']) {
 				$error = fc_lang('输入不完整');
 			} else {
+
 				$code = $this->member_model->login($data['username'], $data['password'], $data['auto'] ? 864000000 : $MEMBER['setting']['loginexpire']);
 				if (strlen($code) > 3) {
 					// 登录成功
@@ -207,44 +208,58 @@ class Login extends M_Controller {
 		}
 	}
 
+    /**
+     * 获取验证码
+     */
+
 	public function getCode()
     {
         if (IS_AJAX) {
             $email = $this->input->post('email');
-            $data = $this->db
-                ->select('uid,username,randcode')
-                ->where('email', $email)
-                ->limit(1)
-                ->get('member')
-                ->row_array();
-            if ($data) {
-                $randcode = dr_randcode();
-                $this->load->helper('email');
-                $code = @file_get_contents(WEBPATH.'cache/email/find_password.html');
-                $boole = $this->sendmail($email, fc_lang('找回密码通知'), fc_lang($code, $data['username'], $randcode, $this->input->ip_address()));
-                if (!$boole) {
-                    $arr = [
-                        'code' => '400',
-                        'msg' => '发送失败'
-                    ];
-                    echo json_encode($arr);exit();
+            if ($email != null) {
+                $data = $this->db
+                    ->select('uid,username,randcode')
+                    ->where('email', $email)
+                    ->limit(1)
+                    ->get('member')
+                    ->row_array();
+                if ($data) {
+                    $randcode = dr_randcode();
+                    $this->load->helper('email');
+                    $code = @file_get_contents(WEBPATH.'cache/email/find_password.html');
+                    $boole = $this->sendmail($email, fc_lang('找回密码通知'), fc_lang($code, $data['username'], $randcode, $this->input->ip_address()));
+                    if (!$boole) {
+                        $arr = [
+                            'code' => '400',
+                            'msg' => '发送失败'
+                        ];
+                        echo json_encode($arr);exit();
+                    }
+    //                !$this->sendmail($email, fc_lang('找回密码通知'), fc_lang($code, $data['username'], $randcode, $this->input->ip_address())) && $this->member_msg(fc_lang('邮件发送失败，请联系管理员检查邮件日志'));
+                    set_cookie('find', $data['uid'], 300);
+                    $this->db->where('uid', $data['uid'])->update('member', array('randcode' => $randcode));
+                    echo json_encode([
+                        'code' => 200,
+                        'msg'  => '发送成功'
+                    ]);exit;
+    //                $this->member_msg(fc_lang('验证码发送成功，请注意查收'), dr_member_url('login/find', array('step' => 2, 'uid' => $data['uid'])), 1);
                 }
-//                !$this->sendmail($email, fc_lang('找回密码通知'), fc_lang($code, $data['username'], $randcode, $this->input->ip_address())) && $this->member_msg(fc_lang('邮件发送失败，请联系管理员检查邮件日志'));
-                set_cookie('find', $data['uid'], 300);
-                $this->db->where('uid', $data['uid'])->update('member', array('randcode' => $randcode));
                 echo json_encode([
-                    'code' => 200,
-                    'msg'  => '发送成功'
+                    'code' => 404,
+                    'msg' => '不存在此用户'
                 ]);exit;
-//                $this->member_msg(fc_lang('验证码发送成功，请注意查收'), dr_member_url('login/find', array('step' => 2, 'uid' => $data['uid'])), 1);
             }
             echo json_encode([
-                'code' => 404,
-                'msg' => '不存在此用户'
+                'code' => 405,
+                'msg' => '输入邮箱为空'
             ]);exit;
         }
     }
 
+
+    /**
+     * 配对验证码
+     */
     public function contrastCode()
     {
         if (IS_AJAX) {
@@ -273,13 +288,13 @@ class Login extends M_Controller {
             $password2 = $this->input->post('password2');
             if ($password1 != $password2) {
                 $arr = [
-                    'code' => 401,
+                    'code' => 402,
                     'msg' => '两次密码输入不一致'
                 ];
                 echo json_encode($arr);exit;
             } elseif (!$password1) {
                 $arr = [
-                    'code' => 401,
+                    'code' => 403,
                     'msg' => '密码不能为空'
                 ];
                 echo json_encode($arr);exit;
@@ -290,7 +305,7 @@ class Login extends M_Controller {
                     if (!$rt['code']) {
 //                        $this->admin_msg(fc_lang($rt['msg']));
                         $arr = [
-                            'code' => 401,
+                            'code' => 404,
                             'msg' => $rt['msg']
                         ];
                         echo json_encode($arr);exit;

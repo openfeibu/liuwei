@@ -1,6 +1,4 @@
 {template "header.html"}
-
-
     <!--内容开始-->
 
     <div class="content">
@@ -13,22 +11,16 @@
                 <p>CUSTOMER CASE</p>
             </div>
         </section>
-        <!--<section class="page-position">-->
-            <!--<div class="pull-left page-position">-->
-                <!--<ul>-->
-                    <!--<li>首页</li>-->
-                    <!--{dr_catpos($catid, '', true, '<li>>></li><li><a href="[url]">[name]</a></li>')}-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</section>-->
+
         <section class="subhead">
             <span>{dr_cat_value(27, 'name')}</span>
             <ul class="pull-right">
-                <li class="active"><a href="{$top.url}">全部</a></li>
-                {list action=category pid=3 }
+                {list action=category pid=3}
                 {if t.child}
                 {list action=category pid=$t.id return=t2}
-                <li><a href="{$t2.url}">{$t2.name}</a></li>
+                <li class="{if in_array($catid, $t2.catids)}active{/if}">
+                    <a href="{$t2.url}">{$t2.name}</a>
+                </li>
                 {/list}
                 {/if}
                 {/list}
@@ -36,17 +28,37 @@
         </section>
 
         <section id="customer-case">
+            {if $catid==45}
+            {list action=module module=news catid=3 page=1 pagesize=9 urlrule=index.php?page=[page] order=displayorder,updatetime}
+            <div class="case-group">
+                <div class="case-image">
+                    <a href="{$t.url}">
+                    <img class="img-responsive" src="{dr_get_file($t.thumb)}" alt="">
+                    <div class="case-text">
+                        <p>{$t.title}</p>
+                    </div>
+                    <div class="case-text-hover">
+                        <p>{$t.title}</p>
+                        <p>{$t.description}</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            {/list}
+            {/if}
             {list action=module module=news catid=$catid page=1 pagesize=9 urlrule=index.php?page=[page] order=displayorder,updatetime}
             <div class="case-group">
                 <div class="case-image">
+                    <a href="{$t.url}">
                     <img class="img-responsive" src="{dr_get_file($t.thumb)}" alt="">
                     <div class="case-text">
-                        <a href="{$t.url}"><p>{$t.title}</p></a>
+                        <p>{$t.title}</p>
                     </div>
                     <div class="case-text-hover">
-                        <a href="{$t.url}"><p>{$t.title}</p></a>
+                        <p>{$t.title}</p>
                         <p>{$t.description}</p>
                     </div>
+                    </a>
                 </div>
             </div>
             {/list}
